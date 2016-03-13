@@ -1,5 +1,7 @@
 package task1;
 
+import java.util.LinkedList;
+
 /**
  * Created by Lexx on 06.03.2016.
  */
@@ -72,6 +74,16 @@ public class Cypher {
             }
             decyphered = decyphered.concat(String.valueOf(block));
         }
-        decyphered = decyphered.replaceAll("~+", "");
+//        decyphered = decyphered.replaceAll("~+", "");
+    }
+
+    public LinkedList<String> brute(LinkedList<int[]> source){
+        LinkedList<String> result = new LinkedList<String>();
+        for (int[] aSource : source) {
+            setTrans(new Transposition(aSource));
+            decypher();
+            result.add(decyphered);
+        }
+        return result;
     }
 }

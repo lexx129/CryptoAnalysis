@@ -1,5 +1,6 @@
 package task1;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Transposition {
@@ -7,9 +8,13 @@ public class Transposition {
     private int[] elements;
     private int[] auxilary;
     private int[] random_elems;
+    private LinkedList<int[]> result;
 
     public Transposition(int length) {
         this.elements = new int[length];
+    }
+    public Transposition(int[] elements) {
+        this.elements = elements;
     }
 
     public int getLength() {
@@ -54,5 +59,41 @@ public class Transposition {
             trans.elements[auxilary[i - 1]] = auxilary[i];
         }
         return trans;
+    }
+
+    private boolean isCorrect(int[] arr) {
+        int a = arr[0];
+        int temp = a;
+        int i = 0;
+        while (i < arr.length - 1 && a != arr[temp - 1]) {
+            i++;
+            temp = arr[temp - 1];
+        }
+        return i == arr.length - 1 && a == arr[temp - 1];
+    }
+
+    public LinkedList<int[]> makeAllTranspositions(int n) {
+        result = new LinkedList<int[]>();
+        int[] temp = elements;
+//        for (int i = 0; i < n; i++) {
+//            temp[i] = i;
+//        }
+        generateNew(temp, 0, n);
+        return result;
+    }
+
+    private void generateNew(int[] transp, int k, int n) {
+        if (k == n) {
+            if (isCorrect(transp))
+                result.add(transp.clone());
+        }
+        else
+        {
+            for (int i = k; i < transp.length; i++) {
+                swap(transp, k, i);
+                generateNew(transp, k + 1, n);
+                swap(transp, k ,i);
+            }
+        }
     }
 }
