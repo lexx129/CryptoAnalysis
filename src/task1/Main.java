@@ -1,32 +1,44 @@
 package task1;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new FileReader("./src/task1/input.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("./src/task1/output.txt"));
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter n: ");
-        int n = Integer.parseInt(br.readLine());
+        int n = scan.nextInt();
         Transposition tr = new Transposition(n);
         Transposition random = tr.makeRandomTransposition(n);
-        System.out.println("Random transposition: " + Arrays.toString(random.getElements())
-        + "\n" + "Auxilary transposition: " + Arrays.toString(tr.getAuxilary()));
+        bw.write("Random transposition: " + Arrays.toString(random.getElements())
+                + "\n" + "Auxilary transposition: " + Arrays.toString(tr.getAuxilary()));
+        bw.flush();
+//        System.out.println("Random transposition: " + Arrays.toString(random.getElements())
+//        + "\n" + "Auxilary transposition: " + Arrays.toString(tr.getAuxilary()));
 
         System.out.println("Enter message: ");
-        String message = br.readLine();
+        String message = br.readLine().toLowerCase();
+        br.close();
         Cypher cypher = new Cypher(message, random);
         cypher.cypher();
         String cyphered = cypher.getCyphered();
-        System.out.println("Исходное сообщение: " + cypher.getMessage() +
+        bw.write("\nИсходное сообщение: " + cypher.getMessage() +
                 "\nЗашифрованное сообщение: " + cypher.getCyphered());
+        bw.flush();
+//        System.out.println("Исходное сообщение: " + cypher.getMessage() +
+//                "\nЗашифрованное сообщение: " + cypher.getCyphered());
 
         cypher = new Cypher(random, cyphered);
         cypher.decypher();
-        System.out.println("Расшированное сообщение: " + cypher.getDecyphered());
+        bw.write("\nРасшированное сообщение: " + cypher.getDecyphered());
+        bw.flush();
+//        System.out.println("Расшированное сообщение: " + cypher.getDecyphered());
+
+        KasiskyTest test = new KasiskyTest(5, cyphered);
+        test.findKeyLength();
+
     }
 }
