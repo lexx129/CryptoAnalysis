@@ -65,19 +65,19 @@ public class Transposition {
         int a = arr[0];
         int temp = a;
         int i = 0;
-        while (i < arr.length - 1 && a != arr[temp - 1]) {
+        while (i < arr.length - 1 && a != arr[temp]) {
             i++;
-            temp = arr[temp - 1];
+            temp = arr[temp];
         }
-        return i == arr.length - 1 && a == arr[temp - 1];
+        return i == arr.length - 1 && a == arr[temp];
     }
 
     public LinkedList<int[]> makeAllTranspositions(int n) {
         result = new LinkedList<int[]>();
         int[] temp = elements;
-//        for (int i = 0; i < n; i++) {
-//            temp[i] = i;
-//        }
+        for (int i = 0; i < n; i++) {
+            temp[i] = i;
+        }
         generateNew(temp, 0, n);
         return result;
     }

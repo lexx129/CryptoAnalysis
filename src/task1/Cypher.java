@@ -1,5 +1,8 @@
 package task1;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -77,13 +80,20 @@ public class Cypher {
 //        decyphered = decyphered.replaceAll("~+", "");
     }
 
-    public LinkedList<String> brute(LinkedList<int[]> source){
-        LinkedList<String> result = new LinkedList<String>();
-        for (int[] aSource : source) {
-            setTrans(new Transposition(aSource));
+    public void brute(LinkedList<int[]> source, BufferedWriter bw) throws IOException {
+        bw.write("\n\n***Possible variants of source text (there're " + source.size() + " of them)***\n");
+        bw.flush();
+        for (int i = 0; i < source.size(); i++) {
+            setTrans(new Transposition(source.get(i)));
+            decyphered = "";
             decypher();
-            result.add(decyphered);
+//            result.add(decyphered);
+            bw.write("\n" + Arrays.toString(source.get(i)) + "   " + decyphered + "\n*************");
+            bw.flush();
+            if (i % 100 == 0) {
+                System.out.println("now on " + i + "'s transposition");
+            }
+
         }
-        return result;
     }
 }

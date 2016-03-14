@@ -56,12 +56,7 @@ public class Main {
                 "probable key length is " + res[0]);
         LinkedList<int[]> transposititons = tr.makeAllTranspositions(res[0]);
         Transposition transposition = new Transposition(res[0]);
-        cypher = new Cypher(cyphered, transposition);
-        LinkedList<String> bruted = cypher.brute(transposititons);
-        for (String aBruted : bruted) {
-            bw.write("\n" + aBruted + "\n******");
-            bw.flush();
-        }
-
+        cypher = new Cypher(transposition, cyphered);
+        cypher.brute(transposititons, bw);
     }
 }
