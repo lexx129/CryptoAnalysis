@@ -46,7 +46,7 @@ public class Main {
                 String[] temp_transp = elements.split(",");
                 int[] transp = new int[temp_transp.length];
                 for (int i = 0; i < transp.length; i++) {
-                    transp[i] = Integer.parseInt(temp_transp[i]);
+                    transp[i] = Integer.parseInt(temp_transp[i].trim());
                 }
                 String message = readTextFromFile(br);
                 br_key.close();
@@ -67,11 +67,11 @@ public class Main {
                 BufferedReader br_key = new BufferedReader(new FileReader("./src/task1/output_key.txt"));
                 BufferedWriter bw_decypher = new BufferedWriter(new FileWriter("./src/task1/output_decypher.txt"));
                 String elements = readTextFromFile(br_key);
-                elements = elements.substring(elements.indexOf('['), elements.lastIndexOf(']'));
+                elements = elements.substring(elements.indexOf('[') + 1, elements.lastIndexOf(']'));
                 String[] temp_transp = elements.split(",");
                 int[] transp = new int[temp_transp.length];
                 for (int i = 0; i < transp.length; i++) {
-                    transp[i] = Integer.parseInt(temp_transp[i]);
+                    transp[i] = Integer.parseInt(temp_transp[i].trim());
                 }
                 String cyphered = readTextFromFile(br_cypher);
                 br_key.close();
@@ -96,7 +96,7 @@ public class Main {
                 int[] res = test.findKeyLength();
                 System.out.println("Maximal gcd is " + res[1] + ", that means, " +
                         "probable key length is " + res[0]);
-                bw_keyLength.write(res[0]);
+                bw_keyLength.write(String.valueOf(res[0]));
                 bw_keyLength.flush();
                 bw_keyLength.close();
                 break;
@@ -106,7 +106,7 @@ public class Main {
                 BufferedReader br_keyLength = new BufferedReader(new FileReader("./src/task1/output_keyLength.txt"));
                 BufferedWriter bw_bruted = new BufferedWriter(new FileWriter("./src/task1/output_bruted.txt"));
                 String cyphered = readTextFromFile(br_cypher);
-                int length = Integer.parseInt(readTextFromFile(br_keyLength));
+                int length = Integer.parseInt(readTextFromFile(br_keyLength).trim());
                 Transposition tr = new Transposition(length);
                 LinkedList<int[]> transposititons = tr.makeAllTranspositions(length);
                 Transposition transposition = new Transposition(length);
