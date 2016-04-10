@@ -16,7 +16,6 @@ public class Main {
         }
         return text.toString().toLowerCase();
     }
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("./src/task1/input.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("./src/task1/output.txt"));
