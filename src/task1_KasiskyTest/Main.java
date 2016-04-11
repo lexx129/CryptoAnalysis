@@ -1,4 +1,4 @@
-package task1;
+package task1_KasiskyTest;
 
 import java.io.*;
 import java.util.Arrays;
@@ -17,8 +17,8 @@ public class Main {
         return text.toString().toLowerCase();
     }
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("./src/task1/input.txt"));
-        BufferedWriter bw = new BufferedWriter(new FileWriter("./src/task1/output.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("./src/task1_KasiskyTest/input.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("./src/task1_KasiskyTest/output.txt"));
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter operation code: \n 0 - generate key; \n 1 - cyphering; \n 2 - decyphering; \n 3 - find key length; " +
                 "\n 4 - bruting." );

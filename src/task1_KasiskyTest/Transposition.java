@@ -1,4 +1,4 @@
-package task1;
+package task1_KasiskyTest;
 
 import java.util.LinkedList;
 import java.util.Random;
@@ -75,8 +75,14 @@ public class Transposition {
     public LinkedList<int[]> makeAllTranspositions(int n) {
         result = new LinkedList<int[]>();
         int[] temp = elements;
-        for (int i = 0; i < n; i++) {
-            temp[i] = i;
+        try {
+            for (int i = 0; i < n; i++) {
+                temp[i] = i;
+            }
+        } catch (ArrayIndexOutOfBoundsException e){
+//            e.printStackTrace();
+            System.err.println("Transposition's length was wrongly selected, please try again.");
+            System.exit(-1);
         }
         generateNew(temp, 0, n);
         return result;

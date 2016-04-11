@@ -1,4 +1,4 @@
-package task1;
+package task1_KasiskyTest;
 
 import java.util.LinkedList;
 import java.util.List;

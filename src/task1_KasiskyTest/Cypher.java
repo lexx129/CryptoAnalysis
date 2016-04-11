@@ -1,4 +1,4 @@
-package task1;
+package task1_KasiskyTest;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

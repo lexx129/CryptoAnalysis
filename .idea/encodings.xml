@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/src/task1/Cypher.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/task1/Main.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/task1/input.txt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/task1/output.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task1_KasiskyTest/Cypher.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task1_KasiskyTest/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task1_KasiskyTest/input.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/task1_KasiskyTest/output.txt" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

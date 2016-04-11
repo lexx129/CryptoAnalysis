@@ -6,8 +6,8 @@ import java.util.Random;
  * Created by Lexx on 10.04.2016.
  */
 public class Generator {
-    private static String CYR_ALPH = "абвгдежзийклмнопрстуфхцчшщъыьэюя";
-    private static String LAT_ALPH = "abcdefghijklmnopqrstuvwxyz";
+    public static String CYR_ALPH = "абвгдежзийклмнопрстуфхцчшщъыьэюя";
+    public static String LAT_ALPH = "abcdefghijklmnopqrstuvwxyz";
     private int length;
 
     public Generator(int length) {
