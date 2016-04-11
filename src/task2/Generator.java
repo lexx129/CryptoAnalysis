@@ -22,21 +22,21 @@ public class Generator {
         switch (type) {
             case 1:
                 for (int i = 0; i < length; i++) {
-                    text[i] = CYR_ALPH.charAt(rnd.nextInt(length));
+                    text[i] = CYR_ALPH.charAt(rnd.nextInt(CYR_ALPH.length()));
                 }
                 break;
             case 2:
                 for (int i = 0; i < length; i++) {
-                    text[i] = LAT_ALPH.charAt(rnd.nextInt(length));
+                    text[i] = LAT_ALPH.charAt(rnd.nextInt(LAT_ALPH.length()));
                 }
                 break;
             case 3:
-                for (int i = 0; i < length; i++) {
+                for (int i = 0; i < length - 1; i++) {
                     boolean chosen = rnd.nextBoolean();
                     if (chosen)
-                        text[i] = CYR_ALPH.charAt(rnd.nextInt(length));
+                        text[i] = CYR_ALPH.charAt(rnd.nextInt(CYR_ALPH.length()));
                     else
-                        text[i] = LAT_ALPH.charAt(rnd.nextInt(length));
+                        text[i] = LAT_ALPH.charAt(rnd.nextInt(LAT_ALPH.length()));
                 }
         }
         return new String(text);
