@@ -5,7 +5,7 @@ package task2;
  */
 public class Analyzer {
 
-    public float analyzeMatchIndex(String first, String second){
+    float analyzeMatchIndex(String first, String second){
         boolean delta;
         int sum = 0;
         for (int i = 0; i < first.length() - 1; i++) {
