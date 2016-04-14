@@ -143,9 +143,56 @@ public class Main {
             case 2:
                 BufferedReader br = new BufferedReader(new FileReader("./src/task2/vigenere.txt"));
                 String alphabet = br.readLine();
+                String key = br.readLine();
+                String plain = br.readLine();
+                Cypher cypher = new Cypher();
+                analyzer = new Analyzer();
+                bw = new BufferedWriter(new FileWriter("./src/task2/analyzed.txt"));
+                String cyphered = cypher.cypher(plain, key, alphabet);
+//                System.out.println("Enter shift length: ");
+//                int length = scan.nextInt();
+                System.out.println("Choose mode: \n 1 - shifting plain text; \n 2 - shifting cyphered with k = 5;");
+                int chosen = scan.nextInt();
+                switch (chosen){
+                    case 1:
+                        for (int i = 0; i < plain.length(); i++) {
+                            String shifted = shift(plain, i);
+                            bw.write(i + ": " + analyzer.analyzeMatchIndex(plain, shifted));
+                            bw.flush();
+                            System.out.println(i + ": " + analyzer.analyzeMatchIndex(plain, shifted));
+                        }
+                        break;
+                    case 2:
+                        System.out.println("cyphered is " + cyphered);
+                        for (int i = 0; i < plain.length(); i++) {
+                            String shifted = shift(cyphered, i);
+                            bw.write(i + ": " + analyzer.analyzeMatchIndex(cyphered, shifted) + "\n");
+                            bw.flush();
+                            System.out.println(i + ": " + analyzer.analyzeMatchIndex(cyphered, shifted));
+                        }
+                        break;
+                }
 
-
+//                analyzer.
+                break;
+//            case 3:
+//                String in = scan.next();
+//                System.out.println(shift(in, 2));
         }
+    }
+
+    public static String shift(String in, int length) {
+//        char[] temp = new char[in.length()];
+//        temp[0] = in.charAt(in.length());
+//        for (int i = 0; i < in.length() - 1; i++) {
+//            temp[i + 1] = in.charAt(i);
+//        }
+//        return new String(temp);
+        String shifted = in;
+        for (int i = 0; i < length; i++) {
+            shifted = shifted.charAt(shifted.length() - 1) + shifted.substring(0, shifted.length() - 1);
+        }
+        return shifted;
     }
 }
 
