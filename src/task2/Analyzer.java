@@ -5,18 +5,21 @@ package task2;
  */
 public class Analyzer {
 
-    float analyzeMatchIndex(String first, String second){
+    public static String CYR_ALPH = "абвгдежзийклмнопрстуфхцчшщъыьэюя";
+    public static String LAT_ALPH = "abcdefghijklmnopqrstuvwxyz";
+
+    float analyzeMatchIndex(String first, String second) {
         boolean delta;
         int sum = 0;
-        for (int i = 0; i < first.length() - 1; i++) {
+        for (int i = 0; i < first.length(); i++) {
             delta = first.charAt(i) == second.charAt(i);
             if (delta)
                 sum++;
         }
-        return sum / (float)first.length();
+        return sum / (float) first.length();
     }
 
-    private float amount(char symbol, String target){
+    private float amount(char symbol, String target) {
         float res = 0;
         for (int i = 0; i < target.length(); i++) {
             if (target.charAt(i) == symbol)
@@ -26,12 +29,35 @@ public class Analyzer {
         return res / (float) target.length();
     }
 
-    public float analyzeAverageMatchIndex(String first, String second){
+    public float analyzeAverageMatchIndex(String first, String second, String lang) {
         float sum = 0;
-        for (int i = 0; i < first.length() - 1; i++) {
-            sum += amount(first.charAt(i), first) *
-                    amount(second.charAt(i), second);
+        float[] f;
+        float[] s;
+        if (lang.equals("eng")) {
+            f = new float[26];
+            s = new float[26];
+            for (int i = 0; i < first.length(); i++) {
+                if (f[LAT_ALPH.indexOf(first.charAt(i))] == 0)
+                    f[LAT_ALPH.indexOf(first.charAt(i))] = amount(first.charAt(i), first);
+                if (s[LAT_ALPH.indexOf(second.charAt(i))] == 0)
+                    s[LAT_ALPH.indexOf(second.charAt(i))] = amount(second.charAt(i), second);
+            }
+            for (int i = 0; i < f.length; i++) {
+                sum += f[i] * s[i];
+            }
+        } else if (lang.equals("cyr")) {
+            f = new float[32];
+            s = new float[32];
+            for (int i = 0; i < first.length(); i++) {
+                if (f[CYR_ALPH.indexOf(first.charAt(i))] == 0)
+                    f[CYR_ALPH.indexOf(first.charAt(i))] = amount(first.charAt(i), first);
+                if (s[CYR_ALPH.indexOf(second.charAt(i))] == 0)
+                    s[CYR_ALPH.indexOf(second.charAt(i))] = amount(second.charAt(i), second);
+            }
+            for (int i = 0; i < f.length; i++) {
+                sum += f[i] * s[i];
+            }
         }
-        return sum;
+        return sum * 100;
     }
 }

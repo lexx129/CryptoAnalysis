@@ -8,8 +8,15 @@ public class Cypher {
     public String cypher (String plainText, String key, String alph){
         char[] result = new char[plainText.length()];
         for (int i = 0; i < plainText.length(); i++) {
-            result[i] = alph.charAt((alph.indexOf(plainText.charAt(i)) +
-                    alph.indexOf(key.charAt(i % key.length()))) % alph.length());
+            try {
+                result[i] = alph.charAt((alph.indexOf(plainText.charAt(i)) +
+                        alph.indexOf(key.charAt(i % key.length()))) % alph.length());
+            }
+            catch (StringIndexOutOfBoundsException e){
+                System.out.println(i);
+                e.printStackTrace();
+            }
+
         }
         return new String(result);
     }
